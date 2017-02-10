@@ -57,7 +57,7 @@ json_t* property_to_json(const OneNote*thus, const PropertyValue&data) {
       char *cur = &b64data[0];
       for (size_t i = 0; i < content.size(); i += 16384) {
 	cur += base64_encode_block((const char*)content.data() + i,
-				   std::min(content.size() - i, (size_t)16384),
+				   std::min((size_t)(content.size() - i), (size_t)16384),
 				   cur,
 				   &state);
       }

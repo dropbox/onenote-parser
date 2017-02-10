@@ -11,6 +11,7 @@
 
 #define htole64(x) (x)
 #define htole32(x) (x)
+#define htole16(x) (x)
 struct GUID;
 struct CompactID;
 struct ExtendedGUID;

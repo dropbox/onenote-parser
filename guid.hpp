@@ -1,5 +1,6 @@
 #ifndef _GUID_HPP_
 #define _GUID_HPP_
+#include <string>
 enum class error {
   OK,
     SEGV,
