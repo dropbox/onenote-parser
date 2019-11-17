@@ -1006,14 +1006,15 @@ error OneNotePtr::deserialize_FileNode(FileNode *data,
       std::vector<uint16_t> u16data(cch);
       uint16_t guidPrefix[] = {'<','i','f','n','d','f','>'};
       size_t prefix_len = sizeof(guidPrefix) / sizeof(guidPrefix[0]);
-      if (cch > prefix_len &&
-	  memcmp(guidPrefix, &u16data[0], sizeof(guidPrefix)) == 0) {
+      if (cch > prefix_len) {
 	err = GUID::parse(&u16data[prefix_len],
 			  cch - prefix_len,
 			  &data->file_data_store_reference);	   
 	if (err != Ok) {
 	  return err;
 	}
+      }
+      if (memcmp(guidPrefix, &u16data[0], sizeof(guidPrefix)) == 0) {
 	data->sub_type.ObjectDeclarationWithRefCount.body.file_data_store_reference=true;
 	//FIXME: why reference 0
 	err = document->get_assoc_guid_to_ref(ExtendedGUID{data->file_data_store_reference,0}, &data->ref);
